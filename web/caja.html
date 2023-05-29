@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="Recursos/css/w3.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"/>
+        <title>CAJA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/js/jquery.js"></script>
+        <script src="Recursos/js/jquery-ui.min.js"></script>
+        <script src="OperacionesJS/cajaJS.js"></script>
+    </head>
+
+    <body><!--
+        <div class="w3-container w3-center">
+            <frameset rows="15%,*,75"> 
+                <frame src="index.html" name="principal"> 
+                    <frame src="Usuario.html" target="principal"><frame src="MantenerPerfil.html" target="principal">
+                    <frame src="AperturaCierre.html" target="principal"><frame src="Cliente.html" target="principal">
+                    <frame src="Empleado.html" target="principal"><frame src="Producto.html" target="principal">
+                    <frame src="TipoDocumento.html" target="principal"><frame src="Venta.html" target="principal">
+                    <frame src="caja.html" target="principal"><frame src="cargo.html" target="principal">
+                    <frame src="categoria.html" target="principal"><frame src="ciudad.html" target="principal">
+                    <frame src="condicion_venta.html" target="principal"><frame src="marca.html" target="principal">
+                    <frame src="nacionalidad.html" target="principal"><frame src="sucursal.html" target="principal">     
+                    <frame src="Existencia.html" target="principal"><frame src="condicion_venta.html" target="principal">        
+           </frameset> 
+            
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">Administracion</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-2">
+                    <a href="Usuario.html" class="w3-bar-item w3-button">Usuario</a>
+                    <a href="MantenerPerfil.html" class="w3-bar-item w3-button">Perfiles</a>
+                    <a href="cargo.html" class="w3-bar-item w3-button">Cargos</a>
+                    <a href="Empleado.html" class="w3-bar-item w3-button">Empleados</a>
+                    <a href="Cliente.html" class="w3-bar-item w3-button">Clientes</a>
+                </div>
+            </div>
+
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">Referenciales</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-2">
+                    <a href="nacionalidad.html" class="w3-bar-item w3-button">Nacionalidades</a>
+                    <a href="ciudad.html" class="w3-bar-item w3-button">Ciudades</a>
+                    <a href="marca.html" class="w3-bar-item w3-button">Marcas</a>
+                    <a href="categoria.html" class="w3-bar-item w3-button">Categorias</a>
+                    <a href="Producto.html" class="w3-bar-item w3-button">Productos</a>
+                    <a href="sucursal.html" class="w3-bar-item w3-button">Sucursales</a>
+                </div>
+            </div>
+
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">Movimientos</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-2">
+                    <a href="Existencia.html" class="w3-bar-item w3-button">Existencia</a>
+                    <a href="Venta.html" class="w3-bar-item w3-button">Venta</a>
+                    <a href="condicion_venta.html" class="w3-bar-item w3-button">Condicion de Venta</a>
+                    <a href="AperturaCierre.html" class="w3-bar-item w3-button">Apertura - Cierre</a>
+                </div>
+            </div>
+
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">Informes</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-2">
+                    <a href="#" class="w3-bar-item w3-button">Reporte 1</a>
+                    <a href="#" class="w3-bar-item w3-button">Reporte 2</a>
+                    <a href="#" class="w3-bar-item w3-button">Reporte 3</a>
+                </div>
+            </div>
+
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">Ayuda</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-2">
+                    <a href="#" class="w3-bar-item w3-button">Ayuda</a>
+                </div>
+            </div>
+        </div>--> 
+
+        <div class="w3-container">
+            <form> 
+                <div class="w3-panel w3-card-4 w3-padding-0" style=" width: 600px;  margin: 0 auto; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">CAJA</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style=" width: 30%; ">
+                                <p class="w3-small w3-right">
+                                    <label class="w3-label w3-validate w3-text-black">Identificador de Caja:&nbsp;</label>
+                                </p>
+                            </div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-round w3-border w3-tiny" type="text" id="id_caja" name="identificador" placeholder="Valor Autogenerado" size="40">
+                            </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style=" width: 30%; ">
+                                <p class="w3-small w3-right">
+                                    <label class="w3-label w3-validate w3-text-black">Caja:&nbsp;</label>
+                                </p>
+                            </div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-round w3-border w3-tiny" type="text" id="caja"  placeholder="Ingrese el estado de la Caja(HABILITADA/DESHABILITADA/EN MANTENIMIENTO)" size="40"  required="true" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w3-container">
+                        <div class="w3-center">
+                            <span class="w3-spin">Buscar</span>
+                            <input class="w3-center" id="filtroCaja" placeholder="Ingrese su Descripcion..."/>
+                        </div>
+                        <div class="w3-centered" style="width:580px; height: 200px; overflow: scroll;">
+                            <table class="w3-table-all w3-center" id="registros_cajas">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>DESCRIPCION</th>
+                                    </tr>
+                                </thead>
+                                <tbody  class="RowsCaja"  id="RowCaja">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-bar w3-light-gray w3-padding-12 w3-center">
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-small" type="submit" onclick="AgregarCaja();">
+                            <i class="fa fa-edit fa-lg"></i> AGREGAR</button>
+                            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-small" type="submit" onclick="EliminarCaja();">
+                            <i class="fa fa-edit fa-lg"></i> ELIMINAR</button>
+                            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-small" type="submit" onclick="ModificarCaja();">
+                            <i class="fa fa-edit fa-lg"></i> MODIFICAR</button>
+                            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-small" type="button" onclick="Recuperar_Caja();"/>
+                        <i class="fa fa-edit fa-lg"></i> RECUPERAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-small" type="button" onclick="LimpiarCaja();">
+                            <i class="fa fa-edit fa-lg"></i> CANCELAR</button>
+                    </div>
+                </div>
+            </form> 
+        </div> 
+        <!--
+                <div class="w3-centered">
+                    <div class="w3-center">
+                        <h1>CAJA</h1>
+                        <label>ID</label>
+                        <input id="id_caja" type="text"/>
+                        <label>Descripcion</label>
+                        <input id="caja" type="text"/>
+                    </div>
+                    <br>
+                    <div class="w3-center">
+                        <span class="w3-spin">Buscar</span>
+                        <input class="w3-center" id="filtroCaja" placeholder="Ingrese su Descripcion..."/>
+                    </div>
+                    <br>
+                    <div class="w3-center">
+                        <table class="w3-table-all">
+                            <thead>
+                                <tr > 
+                                    <th>ID</th>      
+                                    <th>Descripcion</th>
+                                </tr>
+                            </thead>
+                            <tbody class="RowsCaja" id="RowCaja">  
+        
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="w3-center">
+                        <input type="button" onclick="AgregarCaja();" value="Insertar"/>
+                        <input type="button" onclick="ModificarCaja();" value="Modificar"/>
+                        <input type="button" onclick="EliminarCaja();" value="Eliminar"/>
+                        <input type="button" onclick="Recuperar_Caja();" value="Recuperar"/>
+                        <input type="button" value="Cancelar"/>
+                        <input type="button" value="Limpiar"/>
+                    </div>
+                </div>-->
+    </body>
+</html>

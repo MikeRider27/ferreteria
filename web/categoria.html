@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="Recursos/css/w3.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/css/w3.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" type="text/css">
+        <title>CATEGORIA</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/js/jquery.js" ></script>
+        <script src="Recursos/js/jquery-ui.min.js" ></script>
+        <script src="OperacionesJS/categoriaJS.js" ></script>
+    </head>
+    <body>       
+        <div class="w3-container w3-center">
+            <form> 
+                <div class="w3-panel w3-card-4 w3-padding-0 w3-center" style=" width: 600px;  margin: 0 auto; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">CATEGORIA</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style=" width: 30%; ">
+                                <p class="w3-small w3-right">
+                                    <label class="w3-label w3-validate w3-text-black">Identificador de Categoria:&nbsp;</label>
+                                </p>
+                            </div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-round w3-border w3-tiny" type="text" id="id_categoria" name="identificador" placeholder="Valor Autogenerado" size="40">
+                            </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style=" width: 30%; ">
+                                <p class="w3-small w3-right">
+                                    <label class="w3-label w3-validate w3-text-black">Descripcion:&nbsp;</label>
+                                </p>
+                            </div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-round w3-border w3-tiny" type="text" id="categoria"  placeholder="Ingrese la Categoria del Producto" size="40"  required="true" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-center">
+                        <div class="w3-center">
+                            <span class="w3-spin">Buscar</span>
+                            <input class="w3-center" id="filtroCategoria" placeholder="Ingrese su Descripcion..."/>
+                        </div>
+                        <div class="w3-centered" style="width:580px; height: 200px; overflow: scroll;">
+                            <table class="w3-table-all w3-center" id="registros_categorias">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>DESCRIPCION</th>
+                                    </tr>
+                                </thead>
+                                <tbody  class="RowsCategoria"  id="RowCategoria">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-bar w3-light-gray w3-padding-12 w3-center">
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="submit" onclick="AgregarCategoria();">
+                            <i class="fa fa-edit fa-lg"></i> AGREGAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="submit" onclick="EliminarCategoria();">
+                            <i class="fa fa-edit fa-lg"></i> ELIMINAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="submit" onclick="ModificarCategoria();">
+                            <i class="fa fa-edit fa-lg"></i> MODIFICAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="button" onclick="RecuperarCategoria();"/>
+                        <i class="fa fa-edit fa-lg"></i> RECUPERAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="button" onclick="LimpiarCamposCAT();">
+                            <i class="fa fa-edit fa-lg"></i> CANCELAR</button>
+                    </div>
+                </div>
+            </form> 
+        </div>   
+    </body>
+</html>

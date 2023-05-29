@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="Recursos/css/w3.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"/>
+        <title>USUARIOS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/js/jquery.js" ></script>
+        <script src="Recursos/js/jquery-ui.min.js"></script>
+        <script src="OperacionesJS/EmpleadoJS.js"></script>
+        <script src="OperacionesJS/UsuarioJS.js"></script>
+    </head>
+    <body>        
+        <div class="w3-container w3-center" style="width: 1220px;  height: 500px; overflow: scroll">
+            <form>
+                <div class="w3-panel w3-card-4 w3-padding-0" style=" width: 590px;  margin: 0 auto; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">USUARIOS</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style=" width: 30%; ">
+                                <p class="w3-small w3-right">
+                                    <label class="w3-label w3-validate w3-text-black">Identificador del Usuario:&nbsp;</label>
+                                </p>
+                            </div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-round w3-border w3-tiny" type="text" id="id_usuario" name="identificador" placeholder="Valor Autogenerado" size="40">
+                            </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style=" width: 30%; ">
+                                <p class="w3-small w3-right">
+                                    <label class="w3-label w3-validate w3-text-black">Usuario:&nbsp;</label>
+                                </p>
+                            </div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-round w3-border w3-tiny" type="text" id="usuario"  placeholder="Ingrese Nombre de Usuario" size="40"  required="true" >
+                            </div>
+                        </div>
+
+                        <div class="w3-row w3-section">
+                            <div class="w3-col" style=" width: 30%; ">
+                                <p class="w3-small w3-right">
+                                    <label class="w3-label w3-validate w3-text-black">Clave del Usuario:&nbsp;</label>
+                                </p>
+                            </div>
+                            <div class="w3-rest">
+                                <input class="w3-input w3-round w3-border w3-tiny" type="password" id="pass"  placeholder="Ingrese Clave de Usuario" size="40"  required="true" >
+                            </div>
+                        </div>
+
+                        <div class="w3-right w3-small w3-container">
+                            <table>
+                                <tr>
+                                    <th class="w3-small w3-center w3-text-black" style="width: 60px; align-content: center">Perfil:&nbsp;</th>
+                                    <th>
+                                        <select class="w3-select w3-small w3-text-black w3-center" style="width: 235px;" id="id_perfil"></select>
+                                    </th>
+                                    <th class="w3-small w3-center w3-text-black" style="width: 70px; align-content: center">Caja:&nbsp;</th>
+                                    <th><select class="w3-select w3-small w3-text-black w3-center" style="width: 170px;" id="id_caja"></select></th>
+                                </tr>
+                            </table>
+                        </div>
+                        <br><br><br>
+                        <div class="w3-right w3-small w3-container">
+                            <table>
+                                <tr>
+                                    <th class="w3-small w3-center w3-text-black" style="width: 60px; align-content: center">Empleado:&nbsp;</th>
+                                    <th><input class="w3-input w3-round w3-border w3-tiny" type="text" style="width: 40px;" id="id_empleado" required="true"></th>
+                                    <th><input class="w3-btn w3-color-btn w3-hover-green w3-round-small" style="width: 70px;" type="button" value="BUSCAR" onclick="mostrarModalEmpleado(true);"></th>
+                                    <th><input class="w3-input w3-round w3-border w3-tiny w3-center" type="text" style="width: 360px;" id="empleado" placeholder="Nombre del Empleado" readonly="true"/></th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="w3-container">
+                        <div class="w3-center">
+                            <span class="w3-spin">Buscar</span>
+                            <input class="w3-center" id="filtroUsuario" placeholder="Ingrese su Descripcion..."/>
+                        </div>
+                        <div class="w3-center" style="width:590px; height: 200px; overflow: scroll;">
+                            <table class="w3-table-all" id="registros_empleados">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>USUARIO</th>
+                                        <th>PERFIL</th>
+                                        <th>EMPLEADO</th>
+                                        <th>CAJA</th>
+                                    </tr>
+                                </thead>
+                                <tbody  class="RowsUsuario"  id="USER">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-bar w3-light-gray w3-padding-12 w3-center">
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="submit" onclick="AgregarUsuario();">
+                            <i class="fa fa-edit fa-lg"></i> AGREGAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="submit" onclick="EliminarUsuario();">
+                            <i class="fa fa-edit fa-lg"></i> ELIMINAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="submit" onclick="ModificarUsuario();">
+                            <i class="fa fa-edit fa-lg"></i> MODIFICAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="button" onclick="Recuperar();"/>
+                        <i class="fa fa-edit fa-lg"></i> RECUPERAR</button>
+                        <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-round-large" type="button" onclick="LimpiarCamposUsuario();">
+                            <i class="fa fa-edit fa-lg"></i> CANCELAR</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="w3-container">
+                <div id="modal_buscador_empleado" class="w3-modal">
+                    <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width: 1150px; ">
+                        <div class="w3-panel w3-card w3-blue-cab">
+                            <h2 class="w3-center">BUSCAR EMPLEADOS</h2>
+                        </div>
+                        <div class="w3-container">
+                            <div>
+                                <label class="w3-label">Ingrese Descripcion.... </label>
+                                <input class="w3-input w3-border" id="filtroEmpleado"/>
+                            </div>
+                        </div>
+
+                        <div class="w3-container">
+                            <div style="width:1150px; height: 200px; overflow: scroll;">
+                                <table class="w3-table-all" id="datos_empleados">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>EMPLEADO</th>
+                                            <th>CEDULA</th>
+                                            <th>DIRECCION</th>
+                                            <th>TELEFONO</th>
+                                            <th>CAJA</th>
+                                            <th>CARGO</th>
+                                            <th>NACIONALIDAD</th>
+                                            <th>CIUDAD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody  class="RowsEmpleado"  id="RowEmpleado">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                            <button  onclick="recorrerTblBusEmpleado();" type="button"  class="w3-btn  w3-hover-green w3-round-large w3-left ">Confirmar</button>
+                            <button onclick="mostrarModalEmpleado(false)" type="button" class="w3-btn w3-hover-green w3-round-large w3-right">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

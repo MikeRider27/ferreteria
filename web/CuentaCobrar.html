@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="Recursos/css/w3.css" type="text/css"/>
+
+        <title>CUENTA A COBRAR</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/js/jquery.js" ></script>
+        <script src="Recursos/js/jquery-ui.min.js" ></script>
+        <script src="OperacionesJS/CuentaCobrarJS.js" ></script>
+    </head>
+    <body>
+        <div class="w3-centered">
+            <div class="w3-center">
+                <h1>CUENTA A COBRAR</h1>
+
+                <label>ID</label>
+                <input id="id_cc" type="text" />
+                <label>Importe Total</label>
+                <input id="importe_total" type="text"/>
+                <label>Importe Cobrado</label>
+                <input id="importe_cobrado" type="text"/>
+                <label>Nro. Cuota</label>
+                <input id="nro_cuota" type="text"/><br>
+                <label>Fecha</label>
+                <input id="fecha" type="text"/>
+
+                <label>Venta</label>
+                <select id="id_venta"></select>
+            </div>
+            <br>
+            <div class="w3-center">
+                <span class="w3-spin">Buscar</span>
+                <input class="w3-center" id="filtroCC" placeholder="Ingrese su Descripcion..."/>
+            </div>
+            <br>
+            <div class="w3-center">
+                <table class="w3-table-all">
+                    <thead>
+                        <tr> 
+                            <th>ID</th>      
+                            <th>Importe Total</th>       
+                            <th>Importe Cobrado</th>      
+                            <th>Nro. Cuota</th>
+                            <th>Fecha</th>      
+                            <th>Monto Final</th>
+
+                            <th>Venta</th>
+                        </tr>
+                    </thead>
+                    <tbody id="RowCC" class="RowsCC">  
+
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div class="w3-center">
+                <input type="button" onclick="AgregarCC();" value="Insertar"/>
+                <input type="button" onclick="ModificarCC();" value="Modificar"/>
+                <input type="button" onclick="EliminarCC();" value="Eliminar"/>
+                <input type="button" onclick="RecuperarCC();" value="Recuperar"/>
+                <input type="button" value="Cancelar"/>
+                <input type="button" value="Limpiar"/>
+            </div>
+        </div>
+    </body>
+</html>

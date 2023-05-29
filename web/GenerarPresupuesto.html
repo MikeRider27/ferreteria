@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="Recursos/css/w3.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"/>
+        <title>Presupuesto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/js/jquery.js" ></script>
+        <script src="Recursos/js/jquery-ui.min.js" ></script>
+        <script src="OperacionesJS/UsuarioJS.js"></script>
+        <script src="OperacionesJS/ProductoJS.js"></script>
+        <script src="OperacionesJS/PresupuestoJS.js" ></script>
+    </head>
+    <body>
+    <center style=" width: 1220px;  height: 500px; overflow: scroll;">
+        <div style=" width: 600px;" class="w3-round w3-border w3-small">
+            <div  style="border: 1px solid;  width: 600px;" class="w3-round w3-border w3-small">
+                <div class="w3-panel w3-card w3-blue-cab w3-round">
+                    <h2 class="w3-center">PRESUPUESTO</h2>
+                </div>
+                <form>
+                    <table class="w3-round w3-border-0 w3-small w3-table-all">
+                        <tbody>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black">Codigo Presupuesto</label></td>
+                                <td><input type="text" id="id_presupuesto" size="10px" class="w3-round w3-border w3-medium w3-center" 
+                                           onkeydown="//alert(event.keyCode;
+                                                   if (event.keyCode === 13) {
+                                                       RecuperarPresupuesto();
+                                                   }"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black">Fecha</label></td>
+                                <td><input type="text" id="fecha" size="20px" class="w3-round w3-border w3-medium w3-center" required></td>
+                            </tr>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black">Usuario </label></td>
+                                <td><input type="text" id="id_usuario" size="10px" class="w3-round w3-border w3-medium w3-center"
+                                           onkeydown="if (event.keyCode === 13) {
+                                                       mostrarUsuario(true);
+                                                   }"/>
+                                    <input type="text" id="usuario" size="20px" readonly="true" class="w3-round w3-border w3-medium w3-center"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black">Observacion </label></td>
+                                <td><input type="text" id="observacion" size="50px" class="w3-round w3-border w3-medium w3-center"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black w3-center">Datos del Producto </label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <label class="w3-label w3-validate w3-text-black">ID</label>
+                                    <input type="text" class="w3-round w3-border w3-medium w3-center" required="true" 
+                                           onkeydown="if (event.keyCode === 13) {
+                                                       mostrarProducto(true);
+                                                   }" id="id_producto" size="1px"/>
+                                    <label class="w3-label w3-validate w3-text-black">Descripcion</label> 
+                                    <input type="text" id="descrip_producto" size="20px" class="w3-round w3-border w3-medium w3-center"/>
+                                    <label class="w3-label w3-validate w3-text-black">Cantidad</label>
+                                    <input type="text" id="cantidad" class="w3-round w3-border w3-medium w3-center" 
+                                           onkeydown="if (event.keyCode === 13) {
+                                                       agregarFilaPresupuesto();
+                                                       limpiarDetaProductos();
+                                                   }" size="1px"/>
+                                    <label class="w3-label w3-validate w3-text-black">Precio</label>
+                                    <input type="text" id="precio_producto" size="10px" class="w3-round w3-border w3-medium w3-center"/> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div style="width: 600px; height: 200px; overflow: scroll"  class="w3-round w3-border w3-small">
+                <table class="w3-table-all" style="width: 580px; height: 300px; overflow: scroll"> 
+                    <thead>
+                        <tr>
+                            <th style=" width: 1%;" class="w3-round w3-border-0 w3-small ">Codigo</th>
+                            <th style=" width: 60%;" class="w3-round w3-border-0 w3-border-left w3-small">Descripcion</th>
+                            <th style=" width: 2%;" class="w3-round w3-border-0 w3-border-left w3-small">Cantidad</th>
+                            <th style=" width: 25%;" class="w3-round w3-border-0 w3-border-left w3-small">Precio</th>
+                            <th style=" width: 30%;" class="w3-round w3-border-0 w3-border-left w3-small">Total</th>
+                            <th style=" width: 1%;" class="w3-round w3-border-0 w3-border-left w3-small"><img src="Recursos/img/update.png"/></th>
+                            <th style=" width: 1%;" class="w3-round w3-border-0 w3-border-left w3-small"><img src="Recursos/img/delete.png"/></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabladetalleproductos">
+
+                    </tbody>
+
+                </table>
+            </div>
+            <br>
+            <label class="w3-label w3-validate w3-text-black">MONTO TOTAL  </label>
+            <input type="text" id="montototalpresupuesto" size="50px;" class="w3-round w3-border w3-medium w3-center">
+            <br><br>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="submit" onclick="AgregarPresupuesto();">
+                <i class="fa fa-edit fa-lg "></i>GENERAR</button>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="submit" onclick="AnularPresupuesto();">
+                <i class="fa fa-edit fa-lg"></i>ANULAR</button>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="button" onclick="RecuperarPresupuesto();"/>
+            <i class="fa fa-edit fa-lg"></i>RECUPERAR</button>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="button" onclick="limpiarPresupuesto();">
+                <i class="fa fa-edit fa-lg"></i>CANCELAR</button>
+        </div>
+
+        <div class="w3-container">
+            <div id="modal_buscador_producto" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width: 770px; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">BUSCAR PRODUCTO</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div>
+                            <label class="w3-label">Ingrese Descripcion.... </label>
+                            <input class="w3-input w3-border" id="filtroProducto"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-container">
+                        <div class="w3-center" style="width:755px; height: 160px; overflow: scroll;">
+                            <table class="w3-table-all"  id="datos_productos">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>      
+                                        <th>Descripcion</th>
+                                        <th>Marca</th>
+                                        <th>Categoria</th>
+                                        <th>Precio Venta</th>
+                                        <th>Impuesto</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="RowProducto" class="RowsProducto">  
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                        <button  onclick="recorrerProducto();" type="button"  class="w3-btn  w3-hover-green w3-round-large w3-left ">Confirmar</button>
+                        <button onclick="mostrarProducto(false)" type="button" class="w3-btn w3-hover-green w3-round-large w3-right">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-container">
+            <div id="modal_buscador_usuario" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width: 770px; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">BUSCAR USUARIOS</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div>
+                            <label class="w3-label">Ingrese Descripcion.... </label>
+                            <input class="w3-input w3-border" id="filtroUsuario"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-container">
+                        <div style="width:755px; height: 160px; overflow: scroll;">
+                            <table class="w3-table-all" id="datos_usuarios">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>USUARIO</th>
+                                        <th>EMPLEADO</th>
+                                        <th>PERFIL</th>
+                                        <th>CAJA</th>
+                                    </tr>
+                                </thead>
+                                <tbody  class="RowsUsuario"  id="userHTML">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                        <button  onclick="recorrerUsuario();" type="button"  class="w3-btn  w3-hover-green w3-round-large w3-left ">Confirmar</button>
+                        <button onclick="mostrarUsuario(false)" type="button" class="w3-btn w3-hover-green w3-round-large w3-right">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="Recursos/css/w3.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" type="text/css"/>
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="Recursos/bootstrap-3.3.7-dist/css/bootstrap.min.css" type="text/css"/>
+        <title>INVENTARIO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/js/jquery.js" ></script>
+        <script src="Recursos/js/jquery-ui.min.js" ></script>
+        <script src="OperacionesJS/ProductoJS.js"></script>
+        <!--<script src="OperacionesJS/depositoJS.js"></script>-->
+        <script src="OperacionesJS/sucursalJS.js"></script>
+        <script src="OperacionesJS/ExistenciaJS.js"></script>
+    </head>
+    <body>
+    <center style=" width: 1220px;  height: 500px; overflow: scroll;">
+        <div style=" width: 600px;" class="w3-round w3-border w3-small">
+            <div  style="border: 1px solid;  width: 600px;" class="w3-round w3-border w3-small">
+                <div class="w3-panel w3-card w3-blue-cab w3-round">
+                    <h2 class="w3-center">INVENTARIO</h2>
+                </div>
+                <form>
+                    <table class="w3-round w3-border-0 w3-small w3-table-all">
+                        <tbody>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black">Codigo Deposito</label></td>
+                                <td><input type="text" id="id_deposito" size="10px" class="w3-round w3-border w3-medium w3-center" 
+                                           onkeydown="//alert(event.keyCode;
+                                                   if (event.keyCode === 13) {
+                                                       mostrarModalDeposito(true);
+                                                   }">
+                                    <input type="text" id="deposito" size="30px" class="w3-round w3-border w3-medium w3-center"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black">Local </label></td>
+                                <td><input type="text" id="id_sucursal" size="10px" class="w3-round w3-border w3-medium w3-center"
+                                           onkeydown="if (event.keyCode === 13) {
+                                                       mostrarSucursal(true);
+                                                   }"/>
+                                    <input type="text" id="sucursal" size="30px" readonly="true" class="w3-round w3-border w3-medium w3-center"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="w3-label w3-validate w3-text-black w3-center">Datos del Producto </label></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="w3-justify">
+                                    <label class="w3-label w3-validate w3-text-black" size="5px">Codigo</label>
+                                    <input type="text"  id="id_producto" size="5px" class="w3-round w3-border w3-medium w3-center" required="true" 
+                                           onkeydown="if (event.keyCode === 13) {
+                                                       Producto(true);
+                                                   }"/>
+                                    <label class="w3-label w3-validate w3-text-black" size="7px">Descripcion</label> 
+                                    <input type="text" id="descrip_producto" readonly="true" size="30px" class="w3-round w3-border w3-medium w3-center"/>
+                                    <label class="w3-label w3-validate w3-text-black">Cantidad</label>
+                                    <input type="text" id="cantidad" class="w3-round w3-border w3-medium w3-center" 
+                                           onkeydown="if (event.keyCode === 13) {
+                                                       agregarFilaExistencia();
+                                                       limpiarDetaProductos();
+                                                   }" size="5px"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div style="width: 600px; height: 200px; overflow: scroll" class="w3-round w3-border w3-small">
+                <table class="w3-table-all" style="width: 580px; height: 300px; overflow: scroll"> 
+                    <thead>
+                        <tr>
+                            <th style=" width: 5%;" class="w3-round w3-border-0 w3-small ">Codigo</th>
+                            <th style=" width: 40%;" class="w3-round w3-border-0 w3-border-left w3-small">Descripcion</th>
+                            <th style=" width: 5%;" class="w3-round w3-border-0 w3-border-left w3-small">Cantidad</th>
+                            <th style=" width: 5%;" class="w3-round w3-border-0 w3-border-left w3-small"><img src="Recursos/img/update.png"/></th>
+                            <th style=" width: 5%;" class="w3-round w3-border-0 w3-border-left w3-small"><img src="Recursos/img/delete.png"/></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabladetalleprod">
+
+                    </tbody>
+
+                </table>
+            </div>
+            <br>
+            <label class="w3-label w3-validate w3-text-black">CANTIDAD TOTAL  </label>
+            <input type="text" id="totalexistencia" size="50px;" class="w3-round w3-border w3-medium w3-center">
+            <br>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="submit" onclick="AgregarExistencia();">
+                <i class="fa fa-edit fa-lg "></i>AGREGAR</button>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="submit" onclick="AnularExistencia();">
+                <i class="fa fa-edit fa-lg"></i>ANULAR</button>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="button" onclick="RecuperarExistencia();"/>
+            <i class="fa fa-edit fa-lg"></i>RECUPERAR</button>
+            <button class="w3-btn w3-ripple w3-color-btn w3-center w3-hover-green w3-small w3-round-large" type="button" onclick="limpiarExistencia();">
+                <i class="fa fa-edit fa-lg"></i>CANCELAR</button>
+        </div>
+
+        <!--<div class="w3-container">
+            <div id="modal_buscador_deposito" class="w3-modal w3-centered">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width: 620px; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">BUSCAR DEPOSITO</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div>
+                            <label class="w3-label">Ingrese Descripcion.... </label>
+                            <input class="w3-input w3-border" id="filtroDeposito"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-container">
+                        <div class="w3-center" style="width:600px; height: 200px; overflow: scroll;">
+                            <table class="w3-table-all" id="datos_depositos">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>SUCURSAL</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="RowsDeposito"  id="DepositoHTML">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                        <button  onclick="recorrerTblBusDeposito();" type="button"  class="w3-btn  w3-hover-green w3-round-large w3-left ">Confirmar</button>
+                        <button onclick="mostrarModalDeposito(false)" type="button" class="w3-btn w3-hover-green w3-round-large w3-right">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+
+        <div class="w3-container">
+            <div id="modal_buscador_producto" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width: 770px; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">BUSCAR PRODUCTO</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div>
+                            <label class="w3-label">Ingrese Descripcion.... </label>
+                            <input class="w3-input w3-border" id="filtroProducto"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-container">
+                        <div class="w3-center" style="width:755px; height: 160px; overflow: scroll;">
+                            <table class="w3-table-all"  id="datos_productos">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>      
+                                        <th>Descripcion</th>
+                                        <th>Marca</th>
+                                        <th>Categoria</th>
+                                        <th>Precio Venta</th>
+                                        <th>Impuesto</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="RowProducto" class="RowsProducto">  
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                        <button  onclick="recorrerProducto();" type="button"  class="w3-btn  w3-hover-green w3-round-large w3-left ">Confirmar</button>
+                        <button onclick="Producto(false)" type="button" class="w3-btn w3-hover-green w3-round-large w3-right">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-container">
+            <div id="modal_buscador_sucursal" class="w3-modal">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width: 770px; ">
+                    <div class="w3-panel w3-card w3-blue-cab">
+                        <h2 class="w3-center">BUSCAR SUCURSAL</h2>
+                    </div>
+                    <div class="w3-container">
+                        <div>
+                            <label class="w3-label">Ingrese Descripcion.... </label>
+                            <input class="w3-input w3-border" id="filtroSucursal"/>
+                        </div>
+                    </div>
+
+                    <div class="w3-container">
+                        <div class="w3-center" style="width:755px; height: 160px; overflow: scroll;">
+                            <table class="w3-table-all" id="datos_sucursales">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>TELEFONO</th>
+                                        <th>DIRECCION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="RowSucursal" class="RowsSucursal">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">
+                        <button  onclick="recorrerSucursal();" type="button"  class="w3-btn  w3-hover-green w3-round-large w3-left ">Confirmar</button>
+                        <button onclick="mostrarSucursal(false)" type="button" class="w3-btn w3-hover-green w3-round-large w3-right">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>
